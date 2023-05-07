@@ -1,0 +1,82 @@
+/* Add pixelated font */
+h1, h2, h3, h4, h5, h6, form { font-family: 'Silkscreen', cursive; }
+
+/* Background color */
+#background { background-color: burlywood; }
+
+/* Prevent color from fading when the input is disabled */
+input[disabled], select[disabled], textarea[disabled] {   color: black; }
+
+/* Bookshelf interior */
+#shelf
+{
+    /* Set max heigh and width of bookshelf interior (shelf parts) */
+    top: -600px;
+    width: 480px;
+    height: 565px;
+
+    /* border: 1px solid #4CAF50; */
+}
+
+/* Books on the shelf */
+.book
+{
+    width:4%;               /* Make book size a bit smaller */
+    padding-top:6px;        /* So that book bottom touches top of shelf */
+    padding-bottom: 14px;   /* Space between bottom of book, so next row of books perfectly fit into shelf space */
+}
+
+/* Title on closed book */
+#bookTitle
+{
+    word-wrap:break-word;
+    top:-450px; 
+    left: 55px;
+    width: 300px; 
+    height: 250px;
+}
+
+/* Author on closed book */
+#bookAuthor
+{
+    word-wrap:break-word;
+    top:-200px; 
+    left: 55px;
+    width: 300px; 
+    height: 150px;
+}
+
+/* Textblock in the notes section of the book */
+#openBook-notesInput
+{
+    width: 280px;
+    height:400px;
+    border: none; 
+    background:transparent;
+    resize:none;
+    outline:none;   /* No outline when clicking on the notes input */
+}
+
+/* Set size of bookmark area */
+.bookmarkSize
+{
+    height: 38px;
+    top: -36px;
+}
+
+/* Postit title */
+.postit-title
+{
+    top:-315px; 
+    left:25px;
+}
+
+/* Post it close button */
+.postit-close
+{
+    right: 20px; 
+    top:-315px;
+}
+
+/* Post it size */
+.postit-size { width:320px; }
