@@ -1,5 +1,7 @@
 # My Bookshelf
-The website allows users to keep track of the books they've read, recently or even in the past. Users can easily add books to their virtual bookshelf by inputting the book's title, author, and a rating system that ranges from one to five stars, as well as other information. Additionally, they can add personal notes about each book. This is more of a template that can be used in a full stack application, so it will not store information you enter.
+The website allows users to keep track of the books they've read, recently or even in the past. Users can easily add books to their virtual bookshelf by inputting the book's title, author, and a rating system that ranges from one to five stars, as well as other information. Additionally, they can add personal notes about each book. <br>
+
+**NOTE:** This is more of a template that can be used in a full stack application, so it will not store information you enter (for now).
 
 Access the bookshelf: [link](https://paper-clips.github.io/MyBookshelf/)
 
