@@ -1,12 +1,69 @@
-// Globals
-let modeType = "Edit";   // Current mode: Edit or Read
-let bookNum = 3;
+// Globals ----------------------------------------------------------------------------- //
+let modeType = "Edit";      // Current mode: Edit or Read
+let bookNum;                // Iterate each new book which is added to the bookshelf
+let currOpenedBook;         // Keep track of which book is currently clicked on/opened
+let bookList = {};          // Store each book and its info
+// ------------------------------------------------------------------------------------- //
+
+// Add three filled books to bookshelf
+function startingBooksOnShelf()
+{
+    // Book 0
+    bookList["book0"] = ({
+        bookNumber: 0,
+        title: "title0",
+        author: "author0",
+        isFinished: true,
+        dateFinished: "2022-09-12",
+        color: "Red",
+        yearPublished: 1984,
+        numPages: 621,
+        genre: "Sci-Fi",
+        numStars: 0,
+        notes: ""
+    });
+    // Book 1
+    bookList["book1"] = ({
+        bookNumber: 1,
+        title: "title1",
+        author: "author1",
+        isFinished: false,
+        dateFinished: "2023-02-23",
+        color: "Green",
+        yearPublished: 2021,
+        numPages: 1254,
+        genre: "Comedy",
+        numStars: 0,
+        notes: ""
+    });
+    // Book 2
+    bookList["book2"] = ({
+        bookNumber: 2,
+        title: "",
+        author: "",
+        isFinished: false,
+        dateFinished: "",
+        color: "Blue",
+        yearPublished: 20,
+        numPages: 30,
+        genre: "",
+        numStars: 0,
+        notes: ""
+    });
+
+    // Change popovers of first three books to their respective titles
+    titlePopover("book0");
+    titlePopover("book1");
+    titlePopover("book2");
+
+    bookNum = 3;
+}
 
 // Show element based on id name
-function showElement_Id(idName) { document.getElementById(idName).style.visibility = 'visible'; }
+function showElement(idName) { document.getElementById(idName).style.visibility = 'visible'; }
 
 // Hide element based on id name
-function hideElement_Id(idName) { document.getElementById(idName).style.visibility = 'hidden'; }
+function hideElement(idName) { document.getElementById(idName).style.visibility = 'hidden'; }
 
 // Clear form inputs
 function clearForm(idName) { document.getElementById(idName).reset(); }
@@ -14,19 +71,10 @@ function clearForm(idName) { document.getElementById(idName).reset(); }
 // Unselect checkbox
 function uncheckCheckBox(idName) { document.getElementById(idName).checked = false; }
 
-// Change title
+// Change bookshelf title
 function changeTitle() { document.getElementById("bookshelfTitle").textContent = document.getElementById("bookshelfTitleInput").value; }
 
-// Show extra input if clicked on checkbox showing if finished reading book, else hide extra input
-function finishedReading()
-{
-    if(document.getElementById('finishedReadCheck').checked)                // Show
-        document.getElementById('finishedDate').style.display = 'block';
-    else
-        document.getElementById('finishedDate').style.display = 'none';     // Hide
-}
-
-// Change title color
+// Change bookshelf title color
 function changeTitleColor(colorChoice)
 {
     if (colorChoice == "red")                                               // Red
@@ -48,6 +96,15 @@ function setMonth()
     document.getElementById("calendarMonth").textContent = month[d.getMonth()];
 }
 
+// Show extra input if clicked on checkbox showing if finished reading book, else hide extra input
+function finishedReading()
+{
+    if(document.getElementById('finishedReadCheck').checked)                // Show
+        document.getElementById('finishedDate').style.display = 'block';
+    else
+        document.getElementById('finishedDate').style.display = 'none';     // Hide
+}
+
 // Add new book to bookshelf based on selected color
 function addBook()
 {
@@ -57,42 +114,87 @@ function addBook()
 
     // Add book spine to shelf
     if (bookColor == "Red")
-        document.getElementById("shelf").innerHTML += ("\n<img src=\"Assets/redBookSpine.png\" id=\"" + newBookNumber + "\"onclick=\"openBook('frontBook', 'Red')\" class=\"book\" alt=\"Red book\">");
+        document.getElementById("shelf").innerHTML += ("\n<img src=\"Assets/redBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Red'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Red book\">");
     else if (bookColor == "Blue")
-        document.getElementById("shelf").innerHTML += ("\n<img src=\"Assets/blueBookSpine.png\" id=\"" + newBookNumber + "\"onclick=\"openBook('frontBook', 'Blue')\" class=\"book\" alt=\"Blue book\">");
+        document.getElementById("shelf").innerHTML += ("\n<img src=\"Assets/blueBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Blue'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Blue book\">");
     else if (bookColor == "Green")
-        document.getElementById("shelf").innerHTML += ("\n<img src=\"Assets/greenBookSpine.png\" id=\"" + newBookNumber + "\"onclick=\"openBook('frontBook', 'Green')\" class=\"book\" alt=\"Green book\">");
+        document.getElementById("shelf").innerHTML += ("\n<img src=\"Assets/greenBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Green'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Green book\">");
+
+    // Get info from postit
+    let bookTitle = document.getElementById("titleInput").value;
+    let bookAuthor = document.getElementById("authorInput").value;
+    let isFinishedReadingBook = document.getElementById("finishedReadCheck").checked;
+    let dateFinishedBook = document.getElementById("finishedDateInput").value;
+    
+    // Add new book
+    bookList[newBookNumber] = ({
+        bookNumber: bookNum,
+        title: bookTitle,
+        author: bookAuthor,
+        isFinished: isFinishedReadingBook,
+        dateFinished: dateFinishedBook,
+        color: bookColor,
+        yearPublished: undefined,
+        numPages: undefined,
+        genre: "",
+        numStars: 0,
+        notes: ""
+    });
+
+    // Close yellow postit and clear form
+    hideElement("postitYellow");
+    clearForm('yellowPostitForm');
+
+    // Change popover to display title of the book
+    titlePopover(newBookNumber);
+
+    // Iterate number of books on shelf
+    bookNum++;
 }
 
 // Replace closed book with open book
-function openBook(idName, bookColor) 
+function openBook(idName) 
 { 
     // Change the color of the current front of the book to the selected color
     document.getElementById(idName).style.visibility = 'visible'; 
-    if (bookColor == "Red")
+    if (bookList[currOpenedBook].color == "Red")
         document.getElementById('frontBook-image').src = "Assets/redBookFront.png";
-    else if (bookColor == "Green")
+    else if (bookList[currOpenedBook].color == "Green")
         document.getElementById('frontBook-image').src = "Assets/greenBookFront.png";
-    else if (bookColor == "Blue")
+    else if (bookList[currOpenedBook].color == "Blue")
         document.getElementById('frontBook-image').src = "Assets/blueBookFront.png";
 
     // Change to selected color opened book, so when user clicks to open book they get the right colored opened book
-    if (bookColor == "Red")
+    if (bookList[currOpenedBook].color == "Red")
         document.getElementById('openBook-image').src = "Assets/redBookOpen.png";
-    else if (bookColor == "Green")
+    else if (bookList[currOpenedBook].color == "Green")
         document.getElementById('openBook-image').src = "Assets/greenBookOpen.png";
-    else if (bookColor == "Blue")
+    else if (bookList[currOpenedBook].color == "Blue")
         document.getElementById('openBook-image').src = "Assets/blueBookOpen.png";
 }
 
 // Replace book with closed book
 function closeBook(idName) { document.getElementById(idName).style.visibility = 'hidden'; }
 
+// Update in JSON data structure to number of stars selected by user
+function updateStars(num) 
+{ 
+    bookList[currOpenedBook].numStars = num; 
+    changeStars();
+}
+
 // Change to number of stars chosen by user, set others empty
-function changeStar(num)
+function changeStars()
 {
-    switch(num)
+    switch(bookList[currOpenedBook].numStars)
     {
+        case 0:
+            document.getElementById('star1').src = 'Assets/starEmpty.png';
+            document.getElementById('star2').src = 'Assets/starEmpty.png';
+            document.getElementById('star3').src = 'Assets/starEmpty.png';
+            document.getElementById('star4').src = 'Assets/starEmpty.png';
+            document.getElementById('star5').src = 'Assets/starEmpty.png';
+            break;
         case 1:
             document.getElementById('star1').src = 'Assets/starFilled.png';
             document.getElementById('star2').src = 'Assets/starEmpty.png';
@@ -245,16 +347,127 @@ function readMode()
         // Enable edit bookmark
         document.getElementById('yellowBookmark').disabled = false;
 
-        // Disable read buoo
+        // Disable read bookmark
         document.getElementById('blueBookmark').disabled = true;
 
         modeType = "Read";
     }
 }
 
+// Show red postit
+function openRedPostit() { document.getElementById('postitRed').style.visibility = 'visible'; }
+
+// Hide red postit
+function closeRedPostit() { document.getElementById('postitRed').style.visibility = 'hidden'; }
+
 // Remove book from bookshelf
-function deleteBook(idName)
-{
-    // Hide red postit
-    document.getElementById('postitRed').style.visibility = 'visible';
+function deleteBook() 
+{ 
+    // Close book
+    closeBook("openBook");
+    
+    // Close red postit
+    closeRedPostit();
+
+    // Delete book from JSON data structure
+    delete bookList[currOpenedBook]; 
+
+    // Remove book from bookshelf
+    document.getElementById(currOpenedBook).remove();
 }
+
+// Fill in title and author of front of book
+function fillBookFront(idName)
+{
+    document.getElementById("frontBook-title").textContent = bookList[idName].title;
+    document.getElementById("frontBook-author").textContent = bookList[idName].author;
+
+    // Current opened book
+    currOpenedBook = idName;
+}
+
+// Fill in inputs in open book
+function fillBookOpen()
+{
+    document.getElementById("openBook-title").value = bookList[currOpenedBook].title;
+    document.getElementById("openBook-author").value = bookList[currOpenedBook].author;
+    document.getElementById("openBook-yearPublished").value = bookList[currOpenedBook].yearPublished;
+    document.getElementById("openBook-numPages").value = bookList[currOpenedBook].numPages;
+    document.getElementById("openBook-genre").value = bookList[currOpenedBook].genre;
+    document.getElementById("openBook-finishedReading").checked = bookList[currOpenedBook].isFinished;
+    document.getElementById("openBook-finishedDate").value = bookList[currOpenedBook].dateFinished;
+    
+    // Book color
+    if ([bookList[currOpenedBook].color] == "Red")
+        document.getElementById("openBook-bookColor").selectedIndex = 0;
+    else if ([bookList[currOpenedBook].color] == "Green")
+        document.getElementById("openBook-bookColor").selectedIndex = 1;
+    else if ([bookList[currOpenedBook].color] == "Blue")
+        document.getElementById("openBook-bookColor").selectedIndex = 2;  
+
+    // Stars
+    changeStars();
+
+    // Notes
+    document.getElementById("openBook-notesInput").value = bookList[currOpenedBook].notes;
+}
+
+// Update the inputs on the open book when the user changes them in Edit mode
+function updateOpenBook()
+{
+    // Update JSON data structure
+    bookList[currOpenedBook].title = document.getElementById("openBook-title").value;
+    bookList[currOpenedBook].author = document.getElementById("openBook-author").value;
+    bookList[currOpenedBook].yearPublished = document.getElementById("openBook-yearPublished").value;
+    bookList[currOpenedBook].numPages = document.getElementById("openBook-numPages").value;
+    bookList[currOpenedBook].genre = document.getElementById("openBook-genre").value;
+    bookList[currOpenedBook].isFinished = document.getElementById("openBook-finishedReading").checked;
+    bookList[currOpenedBook].dateFinished = document.getElementById("openBook-finishedDate").value;
+
+    // Notes
+    bookList[currOpenedBook].notes = document.getElementById("openBook-notesInput").value;
+
+    // Change popover to display title of the book
+    titlePopover(currOpenedBook);
+}
+
+// Set whichever book was clicked on as the current book
+function setCurrBook(idName) { currOpenedBook = idName; }
+
+// Change the color of the book (spine, front, and opened) based on dropdown sleection
+function changeBookColor()
+{
+    if (document.getElementById("openBook-bookColor").selectedIndex == 0)
+    {
+        [bookList[currOpenedBook].color] = "Red";                                     // Update JSON
+        document.getElementById(currOpenedBook).src = "Assets/redBookSpine.png";            // Change book spine color
+        document.getElementById("frontBook-image").src = "Assets/redBookFront.png";         // Change book front color
+        document.getElementById("openBook-image").src = "Assets/redBookOpen.png";           // Change book open color
+    }
+    else if (document.getElementById("openBook-bookColor").selectedIndex == 1)
+    {
+        [bookList[currOpenedBook].color] = "Green";                                   // Update JSON
+        document.getElementById(currOpenedBook).src = "Assets/greenBookSpine.png";          // Change book spine color
+        document.getElementById("frontBook-image").src = "Assets/greenBookFront.png";       // Change book front color
+        document.getElementById("openBook-image").src = "Assets/greenBookOpen.png";         // Change book open color
+    }
+    else if (document.getElementById("openBook-bookColor").selectedIndex == 2)
+    {
+        [bookList[currOpenedBook].color] = "Blue";                                    // Update JSON
+        document.getElementById(currOpenedBook).src = "Assets/blueBookSpine.png";           // Change book spine color
+        document.getElementById("frontBook-image").src = "Assets/blueBookFront.png";        // Change book front color
+        document.getElementById("openBook-image").src = "Assets/blueBookOpen.png";          // Change book open color
+    }
+}
+
+// Update number of stars selected by user
+function updateNumberStars()
+{
+    // Update JSON
+    bookList[currOpenedBook].numStars = num;
+    // Change the actual stars on the book
+    changeStar(bookList[currOpenedBook].numStars);
+}
+
+// Make popover the title of the book
+function titlePopover(idName) { document.getElementById(idName).title = bookList[idName].title; }
