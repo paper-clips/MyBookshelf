@@ -1,9 +1,11 @@
-// Globals ----------------------------------------------------------------------------- //
+// GLOBALS ----------------------------------------------------------------------------- //
 let modeType = "Edit";      // Current mode: Edit or Read
 let bookNum;                // Iterate each new book which is added to the bookshelf
 let currOpenedBook;         // Keep track of which book is currently clicked on/opened
 let bookList = {};          // Store each book and its info
 // ------------------------------------------------------------------------------------- //
+
+// NOTE: Add accessibility and add validation and clean code
 
 // Add three filled books to bookshelf
 function startingBooksOnShelf()
@@ -114,11 +116,11 @@ function addBook()
 
     // Add book spine to shelf
     if (bookColor == "Red")
-        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/redBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Red'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Red book\"></button>");
+        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/redBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Red'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Red book spine\"></button>");
     else if (bookColor == "Blue")
-        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/blueBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Blue'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Blue book\"></button>");
+        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/blueBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Blue'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Blue book spine\"></button>");
     else if (bookColor == "Green")
-        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/greenBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Green'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Green book\"></button>");
+        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/greenBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Green'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Green book spine\"></button>");
 
     // Get info from postit
     let bookTitle = document.getElementById("titleInput").value;
@@ -142,8 +144,8 @@ function addBook()
     });
 
     // Close yellow postit and clear form
-    //hideElement("postitYellow");
-    //clearForm('yellowPostitForm');
+    hideElement("postitYellow");
+    clearForm('yellowPostitForm');
 
     // Change popover to display title of the book
     titlePopover(newBookNumber);
@@ -155,22 +157,37 @@ function addBook()
 // Replace closed book with open book
 function openBook(idName) 
 { 
-    // Change the color of the current front of the book to the selected color
     document.getElementById(idName).style.visibility = 'visible'; 
     if (bookList[currOpenedBook].color == "Red")
+    {
+        // Change the color of the current front of the book to the selected color
         document.getElementById('frontBook-image').src = "Assets/redBookFront.png";
-    else if (bookList[currOpenedBook].color == "Green")
-        document.getElementById('frontBook-image').src = "Assets/greenBookFront.png";
-    else if (bookList[currOpenedBook].color == "Blue")
-        document.getElementById('frontBook-image').src = "Assets/blueBookFront.png";
-
-    // Change to selected color opened book, so when user clicks to open book they get the right colored opened book
-    if (bookList[currOpenedBook].color == "Red")
+        // Change to selected color opened book, so when user clicks to open book they get the right colored opened book
         document.getElementById('openBook-image').src = "Assets/redBookOpen.png";
+    
+        // Alt text
+        document.getElementById('frontBook-image').alt = "Front of red book cover";
+        document.getElementById('openBook-image').alt = "Opened red book";
+    }
     else if (bookList[currOpenedBook].color == "Green")
+    {
+        document.getElementById('frontBook-image').src = "Assets/greenBookFront.png";
         document.getElementById('openBook-image').src = "Assets/greenBookOpen.png";
+
+        // Alt text
+        document.getElementById('frontBook-image').alt = "Front of green book cover";
+        document.getElementById('openBook-image').alt = "Opened green book";
+    }
     else if (bookList[currOpenedBook].color == "Blue")
+    {
+        document.getElementById('frontBook-image').src = "Assets/blueBookFront.png";
         document.getElementById('openBook-image').src = "Assets/blueBookOpen.png";
+
+        // Alt text
+        document.getElementById('frontBook-image').alt = "Front of blue book cover";
+        document.getElementById('openBook-image').alt = "Opened blue book";
+    }
+
 }
 
 // Replace book with closed book
@@ -194,6 +211,13 @@ function changeStars()
             document.getElementById('star3').src = 'Assets/starEmpty.png';
             document.getElementById('star4').src = 'Assets/starEmpty.png';
             document.getElementById('star5').src = 'Assets/starEmpty.png';
+
+            // Alt text
+            document.getElementById('star1').alt = 'Transparent star';
+            document.getElementById('star2').alt = 'Transparent star';
+            document.getElementById('star3').alt = 'Transparent star';
+            document.getElementById('star4').alt = 'Transparent star';
+            document.getElementById('star5').alt = 'Transparent star';
             break;
         case 1:
             document.getElementById('star1').src = 'Assets/starFilled.png';
@@ -201,6 +225,13 @@ function changeStars()
             document.getElementById('star3').src = 'Assets/starEmpty.png';
             document.getElementById('star4').src = 'Assets/starEmpty.png';
             document.getElementById('star5').src = 'Assets/starEmpty.png';
+
+            // Alt text
+            document.getElementById('star1').alt = 'Yellow star';
+            document.getElementById('star2').alt = 'Transparent star';
+            document.getElementById('star3').alt = 'Transparent star';
+            document.getElementById('star4').alt = 'Transparent star';
+            document.getElementById('star5').alt = 'Transparent star';
             break;
         case 2:
             document.getElementById('star1').src = 'Assets/starFilled.png';
@@ -208,6 +239,13 @@ function changeStars()
             document.getElementById('star3').src = 'Assets/starEmpty.png';
             document.getElementById('star4').src = 'Assets/starEmpty.png';
             document.getElementById('star5').src = 'Assets/starEmpty.png';
+
+            // Alt text
+            document.getElementById('star1').alt = 'Yellow star';
+            document.getElementById('star2').alt = 'Yellow star';
+            document.getElementById('star3').alt = 'Transparent star';
+            document.getElementById('star4').alt = 'Transparent star';
+            document.getElementById('star5').alt = 'Transparent star';
             break;
         case 3:
             document.getElementById('star1').src = 'Assets/starFilled.png';
@@ -215,6 +253,13 @@ function changeStars()
             document.getElementById('star3').src = 'Assets/starFilled.png';
             document.getElementById('star4').src = 'Assets/starEmpty.png';
             document.getElementById('star5').src = 'Assets/starEmpty.png';
+
+            // Alt text
+            document.getElementById('star1').alt = 'Yellow star';
+            document.getElementById('star2').alt = 'Yellow star';
+            document.getElementById('star3').alt = 'Yellow star';
+            document.getElementById('star4').alt = 'Transparent star';
+            document.getElementById('star5').alt = 'Transparent star';
             break;
         case 4:
             document.getElementById('star1').src = 'Assets/starFilled.png';
@@ -222,6 +267,13 @@ function changeStars()
             document.getElementById('star3').src = 'Assets/starFilled.png';
             document.getElementById('star4').src = 'Assets/starFilled.png';
             document.getElementById('star5').src = 'Assets/starEmpty.png';
+
+            // Alt text
+            document.getElementById('star1').alt = 'Yellow star';
+            document.getElementById('star2').alt = 'Yellow star';
+            document.getElementById('star3').alt = 'Yellow star';
+            document.getElementById('star4').alt = 'Yellow star';
+            document.getElementById('star5').alt = 'Transparent star';
             break;
         case 5:
             document.getElementById('star1').src = 'Assets/starFilled.png';
@@ -229,6 +281,13 @@ function changeStars()
             document.getElementById('star3').src = 'Assets/starFilled.png';
             document.getElementById('star4').src = 'Assets/starFilled.png';
             document.getElementById('star5').src = 'Assets/starFilled.png';
+
+            // Alt text
+            document.getElementById('star1').alt = 'Yellow star';
+            document.getElementById('star2').alt = 'Yellow star';
+            document.getElementById('star3').alt = 'Yellow star';
+            document.getElementById('star4').alt = 'Yellow star';
+            document.getElementById('star5').alt = 'Yellow star';
     }
 }
 
@@ -434,29 +493,44 @@ function updateOpenBook()
 // Set whichever book was clicked on as the current book
 function setCurrBook(idName) { currOpenedBook = idName; }
 
-// Change the color of the book (spine, front, and opened) based on dropdown sleection
+// Change the color of the book (spine, front, and opened) based on dropdown selection
 function changeBookColor()
 {
     if (document.getElementById("openBook-bookColor").selectedIndex == 0)
     {
-        [bookList[currOpenedBook].color] = "Red";                                     // Update JSON
+        bookList[currOpenedBook].color = "Red";                                     // Update JSON
         document.getElementById(currOpenedBook).src = "Assets/redBookSpine.png";            // Change book spine color
         document.getElementById("frontBook-image").src = "Assets/redBookFront.png";         // Change book front color
         document.getElementById("openBook-image").src = "Assets/redBookOpen.png";           // Change book open color
+    
+        // Alt text
+        document.getElementById(currOpenedBook).alt = "Red book spine";
+        document.getElementById("frontBook-image").alt = "Front of red book cover";
+        document.getElementById("openBook-image").alt = "Opened red book"; 
     }
     else if (document.getElementById("openBook-bookColor").selectedIndex == 1)
     {
-        [bookList[currOpenedBook].color] = "Green";                                   // Update JSON
+        bookList[currOpenedBook].color = "Green";                                   // Update JSON
         document.getElementById(currOpenedBook).src = "Assets/greenBookSpine.png";          // Change book spine color
         document.getElementById("frontBook-image").src = "Assets/greenBookFront.png";       // Change book front color
         document.getElementById("openBook-image").src = "Assets/greenBookOpen.png";         // Change book open color
+    
+        // Alt text
+        document.getElementById(currOpenedBook).alt = "Green book spine";
+        document.getElementById("frontBook-image").alt = "Front of green book cover";
+        document.getElementById("openBook-image").alt = "Opened green book"; 
     }
     else if (document.getElementById("openBook-bookColor").selectedIndex == 2)
     {
-        [bookList[currOpenedBook].color] = "Blue";                                    // Update JSON
+        bookList[currOpenedBook].color = "Blue";                                    // Update JSON
         document.getElementById(currOpenedBook).src = "Assets/blueBookSpine.png";           // Change book spine color
         document.getElementById("frontBook-image").src = "Assets/blueBookFront.png";        // Change book front color
         document.getElementById("openBook-image").src = "Assets/blueBookOpen.png";          // Change book open color
+    
+        // Alt text
+        document.getElementById(currOpenedBook).alt = "Blue book spine";
+        document.getElementById("frontBook-image").alt = "Front of blue book cover";
+        document.getElementById("openBook-image").alt = "Opened blue book"; 
     }
 }
 
