@@ -11,44 +11,44 @@ function startingBooksOnShelf()
     // Book 0
     bookList["book0"] = ({
         bookNumber: 0,
-        title: "title0",
-        author: "author0",
+        title: "A Series of Unfortunate Events",
+        author: "Lemony Snicket",
         isFinished: true,
-        dateFinished: "2022-09-12",
+        dateFinished: "2012-05-10",
         color: "Red",
-        yearPublished: 1984,
-        numPages: 621,
-        genre: "Sci-Fi",
-        numStars: 0,
-        notes: ""
+        yearPublished: 1999,
+        numPages: 225,
+        genre: "Gothic Fiction",
+        numStars: 5,
+        notes: "\"The world is quiet here\""
     });
     // Book 1
     bookList["book1"] = ({
         bookNumber: 1,
-        title: "title1",
-        author: "author1",
-        isFinished: false,
-        dateFinished: "2023-02-23",
+        title: "Slaughterhouse-Five",
+        author: "Kurt Vonnegut",
+        isFinished: true,
+        dateFinished: "2017-09-15",
         color: "Blue",
-        yearPublished: 2021,
-        numPages: 1254,
-        genre: "Comedy",
-        numStars: 0,
-        notes: ""
+        yearPublished: 1969,
+        numPages: 190,
+        genre: "Dark comedy, SciFi",
+        numStars: 5,
+        notes: "\"So it goes\""
     });
     // Book 2
     bookList["book2"] = ({
         bookNumber: 2,
-        title: "",
-        author: "",
+        title: "Pride and Prejudice",
+        author: "Jane Austen",
         isFinished: false,
         dateFinished: "",
         color: "Green",
-        yearPublished: 20,
-        numPages: 30,
-        genre: "",
+        yearPublished: 1813,
+        numPages: 279,
+        genre: "Historical Fiction",
         numStars: 0,
-        notes: ""
+        notes: "To read..."
     });
 
     // Change popovers of first three books to their respective titles
@@ -114,11 +114,11 @@ function addBook()
 
     // Add book spine to shelf
     if (bookColor == "Red")
-        document.getElementById("shelf").innerHTML += ("\n<img src=\"Assets/redBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Red'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Red book\">");
+        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/redBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Red'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Red book\"></button>");
     else if (bookColor == "Blue")
-        document.getElementById("shelf").innerHTML += ("\n<img src=\"Assets/blueBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Blue'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Blue book\">");
+        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/blueBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Blue'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Blue book\"></button>");
     else if (bookColor == "Green")
-        document.getElementById("shelf").innerHTML += ("\n<img src=\"Assets/greenBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Green'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Green book\">");
+        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/greenBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Green'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Green book\"></button>");
 
     // Get info from postit
     let bookTitle = document.getElementById("titleInput").value;
@@ -142,8 +142,8 @@ function addBook()
     });
 
     // Close yellow postit and clear form
-    hideElement("postitYellow");
-    clearForm('yellowPostitForm');
+    //hideElement("postitYellow");
+    //clearForm('yellowPostitForm');
 
     // Change popover to display title of the book
     titlePopover(newBookNumber);
