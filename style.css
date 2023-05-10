@@ -19,12 +19,7 @@ input[disabled], select[disabled], textarea[disabled] {   color: black; }
 }
 
 /* Books on the shelf */
-.book
-{
-    width:4%;               /* Make book size a bit smaller */
-    padding-top:6px;        /* So that book bottom touches top of shelf */
-    padding-bottom: 14px;   /* Space between bottom of book, so next row of books perfectly fit into shelf space */
-}
+.book { width:20px; /* Make book size a bit smaller */ }
 
 /* Title on closed book */
 #bookTitle
