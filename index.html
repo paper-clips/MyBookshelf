@@ -42,9 +42,15 @@
                     <!-- Books -->
                     <div class="position-relative d-flex align-items-center justify-content-center">
                         <div id="shelf" class="position-absolute">
-                            <img src="Assets/redBookSpine.png" id="book0" data-toggle="popover" onclick="setCurrBook('book0');openBook('frontBook'); fillBookFront('book0')" class="book" alt="Red book">
-                            <img src="Assets/blueBookSpine.png" id="book1" data-toggle="popover" onclick="setCurrBook('book1');openBook('frontBook'); fillBookFront('book1')" class="book" alt="Blue book">
-                            <img src="Assets/greenBookSpine.png" id="book2" data-toggle="popover" onclick="setCurrBook('book2');openBook('frontBook'); fillBookFront('book2')" class="book" alt="Green book">
+                            <button class="p-0 mt-1 mb-3 border border-0 bg-transparent">
+                                <img src="Assets/redBookSpine.png" id="book0" data-toggle="popover" onclick="setCurrBook('book0');openBook('frontBook'); fillBookFront('book0')" class="book" alt="Red book">
+                            </button>
+                            <button class="p-0 mt-1 mb-3 border border-0 bg-transparent">
+                                <img src="Assets/blueBookSpine.png" id="book1" data-toggle="popover" onclick="setCurrBook('book1');openBook('frontBook'); fillBookFront('book1')" class="book" alt="Blue book">
+                            </button>
+                            <button class="p-0 mt-1 mb-3 border border-0 bg-transparent">
+                                <img src="Assets/greenBookSpine.png" id="book2" data-toggle="popover" onclick="setCurrBook('book2');openBook('frontBook'); fillBookFront('book2')" class="book" alt="Green book">
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -182,8 +188,8 @@
                         <button type="button" onclick="closeBook('frontBook')" style="top:-527px; left: 360px" class="position-absolute btn-close btn-close-white" aria-label="Close"></button>
                         
                         <!-- Title -->
-                        <div class="position-absolute d-flex align-items-center justify-content-center" id="bookTitle">
-                            <h2 id="frontBook-title">Title</h2>
+                        <div class="position-absolute d-flex align-items-center" id="bookTitle">
+                            <h2 class="text-center" id="frontBook-title">Title</h2>
                         </div>
                         
                         <!-- Author -->
@@ -326,8 +332,8 @@
 
             <!-- Buttons -->
             <div class="container d-flex align-items-center justify-content-center">
-                <button type="button" class="btn btn-warning pixel-font" onclick="showElement('postitYellow')" style="font-family: 'Silkscreen', cursive">Add Book</button>
-                <button type="button" class="btn btn-primary" onclick="showElement('postitBlue')" style="font-family: 'Silkscreen', cursive">Change Title</button>
+                <button type="button" tabindex="1" class="btn btn-warning pixel-font" onclick="showElement('postitYellow')" style="font-family: 'Silkscreen', cursive">Add Book</button>
+                <button type="button" tabindex="2" class="btn btn-primary" onclick="showElement('postitBlue')" style="font-family: 'Silkscreen', cursive">Change Title</button>
             </div>
         </div>
 
