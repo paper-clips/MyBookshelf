@@ -43,13 +43,13 @@
                     <div class="position-relative d-flex align-items-center justify-content-center">
                         <div id="shelf" class="position-absolute">
                             <button class="p-0 mt-1 mb-3 border border-0 bg-transparent">
-                                <img src="Assets/redBookSpine.png" id="book0" data-toggle="popover" onclick="setCurrBook('book0');openBook('frontBook'); fillBookFront('book0')" class="book" alt="Red book">
+                                <img src="Assets/redBookSpine.png" id="book0" data-toggle="popover" onclick="setCurrBook('book0');openBook('frontBook'); fillBookFront('book0')" class="book" alt="Red book spine">
                             </button>
                             <button class="p-0 mt-1 mb-3 border border-0 bg-transparent">
-                                <img src="Assets/blueBookSpine.png" id="book1" data-toggle="popover" onclick="setCurrBook('book1');openBook('frontBook'); fillBookFront('book1')" class="book" alt="Blue book">
+                                <img src="Assets/blueBookSpine.png" id="book1" data-toggle="popover" onclick="setCurrBook('book1');openBook('frontBook'); fillBookFront('book1')" class="book" alt="Blue book spine">
                             </button>
                             <button class="p-0 mt-1 mb-3 border border-0 bg-transparent">
-                                <img src="Assets/greenBookSpine.png" id="book2" data-toggle="popover" onclick="setCurrBook('book2');openBook('frontBook'); fillBookFront('book2')" class="book" alt="Green book">
+                                <img src="Assets/greenBookSpine.png" id="book2" data-toggle="popover" onclick="setCurrBook('book2');openBook('frontBook'); fillBookFront('book2')" class="book" alt="Green book spine">
                             </button>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                 <div class="col-2"></div> <!-- Don't remove (3rd column (empty))-->
 
                 <!-- Yellow Post it: Add new book -->
-                <div style="visibility:hidden; z-index: 1;" id="postitYellow" class="position-relative container d-flex align-items-center justify-content-center">
+                <div style="visibility:hidden; z-index: 1" id="postitYellow" class="position-relative container d-flex align-items-center justify-content-center">
                     <div class="position-absolute" style="top: -530px">
                         <img src="Assets/yellowPostit.png" class="postit-size" draggable="false" alt="Yellow postit">
                         <div class="row">
@@ -182,13 +182,13 @@
             <!-- Book front -->
             <div style="visibility:hidden" id="frontBook" class="position-relative container d-flex align-items-center justify-content-center">
                 <div class="position-absolute" style="top: -570px">
-                    <img id="frontBook-image" onclick="openBook('openBook');closeBook('frontBook');readMode();fillBookOpen()" style="height:500px" draggable="false" alt="Front of red book">
+                    <img id="frontBook-image" onclick="openBook('openBook');closeBook('frontBook');readMode();fillBookOpen()" style="height:500px" draggable="false" alt="Front of book cover">
                     <div class="position-relative">
                         <!-- Close button -->
                         <button type="button" onclick="closeBook('frontBook')" style="top:-527px; left: 360px" class="position-absolute btn-close btn-close-white" aria-label="Close"></button>
                         
                         <!-- Title -->
-                        <div class="position-absolute d-flex align-items-center" id="bookTitle">
+                        <div class="position-absolute d-flex align-items-center justify-content-center" id="bookTitle">
                             <h2 class="text-center" id="frontBook-title">Title</h2>
                         </div>
                         
@@ -197,14 +197,13 @@
                             <h5 id="frontBook-author">Author</h5>
                         </div>
                     </div>
-
                 </div>
             </div> 
 
             <!-- Opened book -->
             <div style="visibility:hidden" id="openBook" class="position-relative container d-flex align-items-center justify-content-center">
                 <div class="position-absolute" style="top: -570px">
-                    <img id="openBook-image" draggable="false" alt="Open book">
+                    <img id="openBook-image" draggable="false" alt="Opened book">
                 </div>  
                 <div class="position-relative">
                     <!-- Close button -->
@@ -214,19 +213,19 @@
 
                     <!-- Stars -->
                     <button class="position-absolute bg-transparent border border-0 star" onclick="updateStars(1)" style="top: -530px; left: -300px">
-                        <img src="Assets/starEmpty.png" style="width:40px" id="star1" alt="Yellow star">
+                        <img src="Assets/starEmpty.png" style="width:40px" id="star1" alt="Transparent star">
                     </button>
                     <button class="position-absolute bg-transparent border border-0 star" onclick="updateStars(2)" style="top: -530px; left: -250px">
-                        <img src="Assets/starEmpty.png" style="width:40px" id="star2" alt="Star outline">
+                        <img src="Assets/starEmpty.png" style="width:40px" id="star2" alt="Transparent star">
                     </button>
                     <button class="position-absolute bg-transparent border border-0 star" onclick="updateStars(3)" style="top: -530px; left: -200px">
-                        <img src="Assets/starEmpty.png" style="width:40px" id="star3" alt="Star outline">
+                        <img src="Assets/starEmpty.png" style="width:40px" id="star3" alt="Transparent star">
                     </button>
                     <button class="position-absolute bg-transparent border border-0 star" onclick="updateStars(4)" style="top: -530px; left: -150px">
-                        <img src="Assets/starEmpty.png" style="width:40px" id="star4" alt="Star outline">
+                        <img src="Assets/starEmpty.png" style="width:40px" id="star4" alt="Transparent star">
                     </button>
                     <button class="position-absolute bg-transparent border border-0 star" onclick="updateStars(5)" style="top: -530px; left: -100px">
-                        <img src="Assets/starEmpty.png" style="width:40px" id="star5" alt="Star outline">
+                        <img src="Assets/starEmpty.png" style="width:40px" id="star5" alt="Transparent star">
                     </button>
 
                     <!-- Left side of book -->
@@ -300,7 +299,7 @@
                     <!-- Bookmarks -->
                     <!-- Yellow edit bookmark -->
                     <button class="position-absolute border border-0 bg-transparent" id="yellowBookmark" onclick="editMode()" style="top:-530px; left: 348px">
-                        <img src="Assets/editBookmark.png">
+                        <img src="Assets/editBookmark.png" alt="Yellow bookmark">
                         <div class="position-relative">
                             <div class="position-absolute" style="top:-28px; left: 17px">
                                 <h6 id="yellowBookmark-heading"></h6>
@@ -310,7 +309,7 @@
 
                     <!-- Blue read bookmark -->
                     <button class="position-absolute border border-0 bg-transparent" id="blueBookmark" onclick="readMode();updateOpenBook()" style="top:-485px; left: 348px">
-                        <img src="Assets/readBookmark.png">
+                        <img src="Assets/readBookmark.png" alt="Blue bookmark">
                         <div class="position-relative">
                             <div class="position-absolute" style="top:-28px; left: 15px">
                                 <h6 id="blueBookmark-heading" class="text-white">Read</h6>
@@ -320,7 +319,7 @@
                     
                     <!-- Red delete bookmark -->
                     <button class="position-absolute border border-0 bg-transparent" onclick="openRedPostit()" style="top:-440px; left: 348px">
-                        <img src="Assets/deleteBookmark.png">
+                        <img src="Assets/deleteBookmark.png" alt="Red bookmark">
                         <div class="position-relative">
                             <div class="position-absolute" style="top:-28px; left: 5px">
                                 <h6 class="text-white">Delete</h6>
