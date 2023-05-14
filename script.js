@@ -5,8 +5,6 @@ let currOpenedBook;         // Keep track of which book is currently clicked on/
 let bookList = {};          // Store each book and its info
 // ------------------------------------------------------------------------------------- //
 
-// NOTE: Add accessibility and add validation and clean code
-
 // Add three filled books to bookshelf
 function startingBooksOnShelf()
 {
@@ -61,6 +59,12 @@ function startingBooksOnShelf()
     bookNum = 3;
 }
 
+// Set whichever book was clicked on as the current book
+function setCurrBook(idName) { currOpenedBook = idName; }
+
+// Make popover the title of the book
+function titlePopover(idName) { document.getElementById(idName).title = bookList[idName].title; }
+
 // Show element based on id name
 function showElement(idName) { document.getElementById(idName).style.visibility = 'visible'; }
 
@@ -94,7 +98,6 @@ function setMonth()
 {
     const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const d = new Date();
-    document.textContent = "New";
     document.getElementById("calendarMonth").textContent = month[d.getMonth()];
 }
 
@@ -146,6 +149,7 @@ function addBook()
     // Close yellow postit and clear form
     hideElement("postitYellow");
     clearForm('yellowPostitForm');
+    document.getElementById('finishedDate').style.display = 'none';       // Hide date finished block
 
     // Change popover to display title of the book
     titlePopover(newBookNumber);
@@ -413,12 +417,6 @@ function readMode()
     }
 }
 
-// Show red postit
-function openRedPostit() { document.getElementById('postitRed').style.visibility = 'visible'; }
-
-// Hide red postit
-function closeRedPostit() { document.getElementById('postitRed').style.visibility = 'hidden'; }
-
 // Remove book from bookshelf
 function deleteBook() 
 { 
@@ -426,7 +424,7 @@ function deleteBook()
     closeBook("openBook");
     
     // Close red postit
-    closeRedPostit();
+    hideElement('postitRed');
 
     // Delete book from JSON data structure
     delete bookList[currOpenedBook]; 
@@ -490,9 +488,6 @@ function updateOpenBook()
     titlePopover(currOpenedBook);
 }
 
-// Set whichever book was clicked on as the current book
-function setCurrBook(idName) { currOpenedBook = idName; }
-
 // Change the color of the book (spine, front, and opened) based on dropdown selection
 function changeBookColor()
 {
@@ -533,15 +528,3 @@ function changeBookColor()
         document.getElementById("openBook-image").alt = "Opened blue book"; 
     }
 }
-
-// Update number of stars selected by user
-function updateNumberStars()
-{
-    // Update JSON
-    bookList[currOpenedBook].numStars = num;
-    // Change the actual stars on the book
-    changeStar(bookList[currOpenedBook].numStars);
-}
-
-// Make popover the title of the book
-function titlePopover(idName) { document.getElementById(idName).title = bookList[idName].title; }
