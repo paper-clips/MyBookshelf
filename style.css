@@ -75,3 +75,25 @@ input[disabled], select[disabled], textarea[disabled] {   color: black; }
 
 /* Post it size */
 .postit-size { width:320px; }
+
+/* Post it */
+.postit
+{
+    visibility:hidden;
+    z-index: 1;
+}
+
+/* Star position */
+.star-pos { top: -530px; }
+
+/* Star size */
+.star-size { width:40px; }
+
+/* Left side of open book positioning for text */
+.openBook-leftPage-pos { left: -310px; }
+
+/* Postition of bookmarks on opened book */
+.bookmark-pos { left: 348px; }
+
+/* Postition of bookmark headings on opened book */
+.bookmark-heading-pos { top:-28px; }
