@@ -84,16 +84,16 @@ input[disabled], select[disabled], textarea[disabled] {   color: black; }
 }
 
 /* Star position */
-.star-pos { top: -530px; }
+.star-pos { top: -270px; }
 
 /* Star size */
 .star-size { width:40px; }
 
 /* Left side of open book positioning for text */
-.openBook-leftPage-pos { left: -310px; }
+.openBook-leftPage-pos { left: -85px; }
 
 /* Postition of bookmarks on opened book */
-.bookmark-pos { left: 348px; }
+.bookmark-pos { left: 586px; }
 
 /* Postition of bookmark headings on opened book */
 .bookmark-heading-pos { top:-28px; }
