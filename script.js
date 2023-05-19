@@ -119,11 +119,11 @@ function addBook()
 
     // Add book spine to shelf
     if (bookColor == "Red")
-        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/redBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Red'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Red book spine\"></button>");
+        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/redBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" data-bs-toggle=\"modal\" data-bs-target=\"#frontBook-modal\" onclick=\"setCurrBook('" + newBookNumber + "');openBook(); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Red book spine\"></button>");
     else if (bookColor == "Blue")
-        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/blueBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Blue'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Blue book spine\"></button>");
+        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/blueBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" data-bs-toggle=\"modal\" data-bs-target=\"#frontBook-modal\" onclick=\"setCurrBook('" + newBookNumber + "');openBook(); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Blue book spine\"></button>");
     else if (bookColor == "Green")
-        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/greenBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" onclick=\"setCurrBook('" + newBookNumber + "');openBook('frontBook', 'Green'); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Green book spine\"></button>");
+        document.getElementById("shelf").innerHTML += ("\n<button class=\"p-0 mb-3 border border-0 bg-transparent\">\n<img src=\"Assets/greenBookSpine.png\" id=\"" + newBookNumber + "\" data-toggle=\"popover\" data-bs-toggle=\"modal\" data-bs-target=\"#frontBook-modal\" onclick=\"setCurrBook('" + newBookNumber + "');openBook(); fillBookFront('" + newBookNumber + "')\" class=\"book\" alt=\"Green book spine\"></button>");
 
     // Get info from postit
     let bookTitle = document.getElementById("titleInput").value;
@@ -147,7 +147,6 @@ function addBook()
     });
 
     // Close yellow postit and clear form
-    hideElement("postitYellow");
     clearForm('yellowPostitForm');
     document.getElementById('finishedDate').style.display = 'none';       // Hide date finished block
 
@@ -159,9 +158,8 @@ function addBook()
 }
 
 // Replace closed book with open book
-function openBook(idName) 
+function openBook() 
 { 
-    document.getElementById(idName).style.visibility = 'visible'; 
     if (bookList[currOpenedBook].color == "Red")
     {
         // Change the color of the current front of the book to the selected color
@@ -193,9 +191,6 @@ function openBook(idName)
     }
 
 }
-
-// Replace book with closed book
-function closeBook(idName) { document.getElementById(idName).style.visibility = 'hidden'; }
 
 // Update in JSON data structure to number of stars selected by user
 function updateStars(num) 
@@ -420,12 +415,6 @@ function readMode()
 // Remove book from bookshelf
 function deleteBook() 
 { 
-    // Close book
-    closeBook("openBook");
-    
-    // Close red postit
-    hideElement('postitRed');
-
     // Delete book from JSON data structure
     delete bookList[currOpenedBook]; 
 
