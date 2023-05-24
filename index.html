@@ -61,7 +61,7 @@
             <div class="modal fade" id="yellowPostit-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="position-relative container d-flex justify-content-center">
-                        <div class="position-absolute" style="top: -250px">
+                        <div class="position-absolute center-vertically">
                             <img src="Assets/yellowPostit.png" class="postit-size" alt="Yellow postit">
                             
                             <div class="modal-content">
@@ -120,7 +120,7 @@
             <div class="modal fade" id="bluePostit-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="position-relative container d-flex justify-content-center">
-                        <div class="position-absolute" style="top: -250px">
+                        <div class="position-absolute center-vertically">
                             <img src="Assets/bluePostit.png" class="postit-size" alt="Blue postit">
                             <div class="modal-content">
                                 <div class="row">
@@ -165,7 +165,7 @@
             <div class="modal fade" id="redPostit-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="position-relative container d-flex justify-content-center">
-                        <div class="position-absolute" style="top: -250px">
+                        <div class="position-absolute center-vertically">
                             <img src="Assets/redPostit.png" class="postit-size" alt="Red postit">
                             <div class="modal-content">
                                 <div class="row">
@@ -202,7 +202,7 @@
             <div class="modal fade" id="frontBook-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="position-relative container d-flex justify-content-center">
-                        <div class="position-absolute" style="top: -300px">
+                        <div class="position-absolute center-vertically">
                             <img id="frontBook-image" style="height:500px" alt="Front of book cover">
                             <div class="modal-content">
                                 <button class="position-relative border border-0 bg-dark" onclick="readMode();fillBookOpen()" data-dismiss="modal" data-bs-toggle="modal" data-bs-target="#openBook-modal">
@@ -230,130 +230,132 @@
             <!-- Opened book Modal-->
             <div class="modal fade" id="openBook-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                    <div class="position-relative container d-flex align-content-center justify-content-center">
-                        <img id="openBook-image" class="position-absolute" style="top: -300px" alt="Opened book">
-                        <div class="modal-content border-0">
-                            <div class="position-relative">
-                                <!-- Close button -->
-                                <div class="position-absolute" style="top:-335px; left:595px">
-                                    <button class="btn-close btn-close-white" data-bs-dismiss="modal" onclick="updateOpenBook()" aria-label="Close"></button>
-                                </div>
+                    <div class="position-relative container d-flex justify-content-center">
+                        <div class="position-absolute center-vertically">
+                            <img id="openBook-image" alt="Opened book">
+                            <div class="modal-content border-0">
+                                <div class="position-relative">
+                                    <div class="position-absolute" style="top:-540px">
+                                        <!-- Close button -->
+                                        <button class="position-absolute btn-close btn-close-white" style="left:745px;top:2px" data-bs-dismiss="modal" onclick="updateOpenBook()" aria-label="Close"></button>
 
-                                <!-- Stars -->
-                                <button class="position-absolute bg-transparent border border-0 star star-pos" onclick="updateStars(1)" style="left: -65px">
-                                    <img src="Assets/starEmpty.png" class="star-size" id="star1" alt="Transparent star">
-                                </button>
-                                <button class="position-absolute bg-transparent border border-0 star star-pos" onclick="updateStars(2)" style="left: -15px">
-                                    <img src="Assets/starEmpty.png" class="star-size" id="star2" alt="Transparent star">
-                                </button>
-                                <button class="position-absolute bg-transparent border border-0 star star-pos" onclick="updateStars(3)" style="left: 35px">
-                                    <img src="Assets/starEmpty.png" class="star-size" id="star3" alt="Transparent star">
-                                </button>
-                                <button class="position-absolute bg-transparent border border-0 star star-pos" onclick="updateStars(4)" style="left: 85px">
-                                    <img src="Assets/starEmpty.png" class="star-size" id="star4" alt="Transparent star">
-                                </button>
-                                <button class="position-absolute bg-transparent border border-0 star star-pos" onclick="updateStars(5)" style="left: 135px">
-                                    <img src="Assets/starEmpty.png" class="star-size" id="star5" alt="Transparent star">
-                                </button>
+                                        <!-- Stars -->
+                                        <button class="position-absolute bg-transparent border border-0 star star-pos" onclick="updateStars(1)" style="left: 85px">
+                                            <img src="Assets/starEmpty.png" class="star-size" id="star1" alt="Transparent star">
+                                        </button>
+                                        <button class="position-absolute bg-transparent border border-0 star star-pos" onclick="updateStars(2)" style="left: 135px">
+                                            <img src="Assets/starEmpty.png" class="star-size" id="star2" alt="Transparent star">
+                                        </button>
+                                        <button class="position-absolute bg-transparent border border-0 star star-pos" onclick="updateStars(3)" style="left: 185px">
+                                            <img src="Assets/starEmpty.png" class="star-size" id="star3" alt="Transparent star">
+                                        </button>
+                                        <button class="position-absolute bg-transparent border border-0 star star-pos" onclick="updateStars(4)" style="left: 235px">
+                                            <img src="Assets/starEmpty.png" class="star-size" id="star4" alt="Transparent star">
+                                        </button>
+                                        <button class="position-absolute bg-transparent border border-0 star star-pos" onclick="updateStars(5)" style="left: 285px">
+                                            <img src="Assets/starEmpty.png" class="star-size" id="star5" alt="Transparent star">
+                                        </button>
 
-                                <!--------- Left side of book --------->
-                                <form action="/index.html" id="leftPageForm">
-                                    <!-- Title -->
-                                    <div class="position-absolute openBook-leftPage-pos" style="top: -190px">
-                                        <label for="openBook-title">Title: </label>
-                                        <input type="text" id="openBook-title" class="w-50 border border-black border-2 border-0 border-bottom">
-                                    </div>
-                                    
-                                    <!-- Author -->
-                                    <div class="position-absolute openBook-leftPage-pos" style="top: -155px">
-                                        <label for="openBook-author">Author: </label>
-                                        <input type="text" id="openBook-author" class="w-50 border border-black border-2 border-0 border-bottom">
-                                    </div>
-                                    
-                                    <!-- Year published -->
-                                    <div class="position-absolute openBook-leftPage-pos" style="top: -120px">
-                                        <label for="openBook-yearPublished">Year published: </label>
-                                        <input type="number" id="openBook-yearPublished" class="w-25 border border-black border-2 border-0 border-bottom">
-                                    </div>
-                                    
-                                    <!-- Pages -->
-                                    <div class="position-absolute openBook-leftPage-pos" style="top: -85px">
-                                        <label for="openBook-numPages">Pages: </label>
-                                        <input type="number" id="openBook-numPages" class="w-25 border border-black border-2 border-0 border-bottom">
-                                    </div>
-                                    
-                                    <!-- Genre -->
-                                    <div class="position-absolute openBook-leftPage-pos" style="top: -50px">
-                                        <label for="openBook-genre">Genre(s): </label>
-                                        <input type="text" id="openBook-genre" class="w-50 border border-black border-2 border-0 border-bottom">
-                                    </div>
-                                    
-                                    <!-- Book color -->
-                                    <div class="position-absolute openBook-leftPage-pos" style="top: -15px">
-                                        <label for="openBook-bookColor">Book color: </label>
-                                        <select id="openBook-bookColor" onclick="changeBookColor()" class="border border-black border-2 border-0 border-bottom bg-white">
-                                            <option>Red</option>
-                                            <option>Green</option>
-                                            <option>Blue</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <!-- Finished reading -->
-                                    <div class="position-absolute openBook-leftPage-pos" style="top: 20px">
-                                        <label for="openBook-finishedReading">Finished reading?</label>
-                                        <input id="openBook-finishedReading" type="checkbox" aria-label="Yes">
-                                    </div>                     
-                                    
-                                    <!-- Date finished -->
-                                    <div class="position-absolute openBook-leftPage-pos" style="top: 55px; width:290px">
-                                        <label for="openBook-finishedDate">Date finished: </label>
-                                        <input type="date" id="openBook-finishedDate" style="font-size: small;" class="float-end w-50 border border-black border-2 border-0 border-bottom"><br>
-                                    </div>
-                                </form>
+                                        <!--------- Left side of book --------->
+                                        <form action="/index.html" id="leftPageForm">
+                                            <!-- Title -->
+                                            <div class="position-absolute openBook-leftPage-pos" style="top: 147px; width:460px">
+                                                <label for="openBook-title">Title: </label>
+                                                <input type="text" id="openBook-title" class="w-50 border border-black border-2 border-0 border-bottom">
+                                            </div>
+                                            
+                                            <!-- Author -->
+                                            <div class="position-absolute openBook-leftPage-pos" style="top: 182px; width:410px">
+                                                <label for="openBook-author">Author: </label>
+                                                <input type="text" id="openBook-author" class="w-50 border border-black border-2 border-0 border-bottom">
+                                            </div>
+                                            
+                                            <!-- Year published -->
+                                            <div class="position-absolute openBook-leftPage-pos" style="top: 217px; width:300px">
+                                                <label for="openBook-yearPublished">Year published: </label>
+                                                <input type="number" id="openBook-yearPublished" class="w-25 border border-black border-2 border-0 border-bottom">
+                                            </div>
+                                            
+                                            <!-- Pages -->
+                                            <div class="position-absolute openBook-leftPage-pos" style="top: 252px;width:400px">
+                                                <label for="openBook-numPages">Pages: </label>
+                                                <input type="number" id="openBook-numPages" class="w-25 border border-black border-2 border-0 border-bottom">
+                                            </div>
+                                            
+                                            <!-- Genre -->
+                                            <div class="position-absolute openBook-leftPage-pos" style="top: 287px;width:380px">
+                                                <label for="openBook-genre">Genre(s): </label>
+                                                <input type="text" id="openBook-genre" class="w-50 border border-black border-2 border-0 border-bottom">
+                                            </div>
+                                            
+                                            <!-- Book color -->
+                                            <div class="position-absolute openBook-leftPage-pos" style="top: 322px;width:300px">
+                                                <label for="openBook-bookColor">Book color: </label>
+                                                <select id="openBook-bookColor" onclick="changeBookColor()" class="border border-black border-2 border-0 border-bottom bg-white">
+                                                    <option>Red</option>
+                                                    <option>Green</option>
+                                                    <option>Blue</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <!-- Finished reading -->
+                                            <div class="position-absolute openBook-leftPage-pos" style="top: 357px;width:300px">
+                                                <label for="openBook-finishedReading">Finished reading?</label>
+                                                <input id="openBook-finishedReading" type="checkbox" aria-label="Yes">
+                                            </div>                     
+                                            
+                                            <!-- Date finished -->
+                                            <div class="position-absolute openBook-leftPage-pos" style="top: 392px; width:290px">
+                                                <label for="openBook-finishedDate">Date finished: </label>
+                                                <input type="date" id="openBook-finishedDate" style="font-size: small" class="float-end w-50 border border-black border-2 border-0 border-bottom"><br>
+                                            </div>
+                                        </form>
 
-                                <!--------- Right side of book --------->
-                                <!-- Notes title -->
-                                <div class="position-absolute" style="top:-270px; left:265px">
-                                    <h3>Notes</h3>
-                                </div>
-                                
-                                <!-- Notes input -->
-                                <div class="position-absolute" style="top:-230px;left: 265px">
-                                    <form action="/index.html" id="notesInputForm">
-                                        <textarea id="openBook-notesInput" placeholder="Write something.."></textarea>
-                                    </form>
-                                </div>
-
-                                <!-- Bookmarks -->
-                                <!-- Yellow edit bookmark -->
-                                <button class="position-absolute border border-0 bg-transparent bookmark-pos" id="yellowBookmark" onclick="editMode()" style="top:-260px">
-                                    <img src="Assets/editBookmark.png" alt="Yellow bookmark">
-                                    <div class="position-relative">
-                                        <div class="position-absolute bookmark-heading-pos" style="left: 17px">
-                                            <h6 id="yellowBookmark-heading"></h6>
+                                        <!--------- Right side of book --------->
+                                        <!-- Notes title -->
+                                        <div class="position-absolute" style="top:67px; left:415px">
+                                            <h3>Notes</h3>
                                         </div>
-                                    </div>
-                                </button>
+                                        
+                                        <!-- Notes input -->
+                                        <div class="position-absolute" style="top:107px;left: 415px">
+                                            <form action="/index.html" id="notesInputForm">
+                                                <textarea id="openBook-notesInput" placeholder="Write something.."></textarea>
+                                            </form>
+                                        </div>
 
-                                <!-- Blue read bookmark -->
-                                <button class="position-absolute border border-0 bg-transparent bookmark-pos" id="blueBookmark" onclick="readMode();updateOpenBook()" style="top:-215px">
-                                    <img src="Assets/readBookmark.png" alt="Blue bookmark">
-                                    <div class="position-relative">
-                                        <div class="position-absolute bookmark-heading-pos" style="left: 15px">
-                                            <h6 id="blueBookmark-heading" class="text-white">Read</h6>
-                                        </div>
+                                        <!-- Bookmarks -->
+                                        <!-- Yellow edit bookmark -->
+                                        <button class="position-absolute border border-0 bg-transparent bookmark-pos" id="yellowBookmark" onclick="editMode()" style="top:77px">
+                                            <img src="Assets/editBookmark.png" alt="Yellow bookmark">
+                                            <div class="position-relative">
+                                                <div class="position-absolute bookmark-heading-pos" style="left: 17px">
+                                                    <h6 id="yellowBookmark-heading"></h6>
+                                                </div>
+                                            </div>
+                                        </button>
+
+                                        <!-- Blue read bookmark -->
+                                        <button class="position-absolute border border-0 bg-transparent bookmark-pos" id="blueBookmark" onclick="readMode();updateOpenBook()" style="top:122px">
+                                            <img src="Assets/readBookmark.png" alt="Blue bookmark">
+                                            <div class="position-relative">
+                                                <div class="position-absolute bookmark-heading-pos" style="left: 15px">
+                                                    <h6 id="blueBookmark-heading" class="text-white">Read</h6>
+                                                </div>
+                                            </div>
+                                        </button>
+                                        
+                                        <!-- Red delete bookmark -->
+                                        <button class="position-absolute border border-0 bg-transparent bookmark-pos" onclick="updateOpenBook()" data-bs-toggle="modal" data-bs-target="#redPostit-modal" style="top:167px">
+                                            <img src="Assets/deleteBookmark.png" alt="Red bookmark">
+                                            <div class="position-relative">
+                                                <div class="position-absolute bookmark-heading-pos" style="left: 5px">
+                                                    <h6 class="text-white">Delete</h6>
+                                                </div>
+                                            </div>
+                                        </button>
                                     </div>
-                                </button>
-                                
-                                <!-- Red delete bookmark -->
-                                <button class="position-absolute border border-0 bg-transparent bookmark-pos" onclick="updateOpenBook()" data-bs-toggle="modal" data-bs-target="#redPostit-modal" style="top:-170px">
-                                    <img src="Assets/deleteBookmark.png" alt="Red bookmark">
-                                    <div class="position-relative">
-                                        <div class="position-absolute bookmark-heading-pos" style="left: 5px">
-                                            <h6 class="text-white">Delete</h6>
-                                        </div>
-                                    </div>
-                                </button>
+                                </div>
                             </div>
                         </div>
                     </div>
