@@ -4,6 +4,13 @@ h1, h2, h3, h4, h5, h6, form { font-family: 'Silkscreen', cursive; }
 /* Background color */
 #background { background-color: burlywood; }
 
+/* Align center (vertically */
+.center-vertically 
+{ 
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
 /* Prevent color from fading when the input is disabled */
 input[disabled], select[disabled], textarea[disabled] {   color: black; }
 
@@ -84,16 +91,16 @@ input[disabled], select[disabled], textarea[disabled] {   color: black; }
 }
 
 /* Star position */
-.star-pos { top: -270px; }
+.star-pos { top: 75px; }
 
 /* Star size */
 .star-size { width:40px; }
 
 /* Left side of open book positioning for text */
-.openBook-leftPage-pos { left: -85px; }
+.openBook-leftPage-pos { left: 65px; }
 
 /* Postition of bookmarks on opened book */
-.bookmark-pos { left: 586px; }
+.bookmark-pos { left: 732px; }
 
 /* Postition of bookmark headings on opened book */
 .bookmark-heading-pos { top:-28px; }
